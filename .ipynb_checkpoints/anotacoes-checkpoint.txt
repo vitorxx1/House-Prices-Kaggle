@@ -1,0 +1,17 @@
+PREENCHIMENTO DE DADOS MISSING
+Alley: os NaN na verdade indicam que não há acesso via beco
+    - vale preencher como "NA" e fazer um OHE da coluna (provavelmente vai dar feature importance baixa para coluna com NA)
+
+FireplaceQu: os NaN indicam que não há lareira na casa
+    - vale preencher como "NA" e depois aplicar um OrdinalEncoding na coluna
+    
+PoolQC: os NaN indicam que não há piscina na casa
+    - vale preencher como "NA" e depois aplicar um OrdinalEncoding na coluna
+    
+Fence: os NaN indicam que não há cerca ao redor da casa casa
+    - vale preencher como "NA" e depois aplicar um OrdinalEncoding na coluna
+    
+MiscFeature: os NaN na verdade indicam que não há recursos extras na casa
+    - vale preencher como "NA" e fazer um OHE da coluna (provavelmente vai dar feature importance baixa para coluna com NA)
+    
+LotFrontage: substituir pela média global, ou talvez por uma média de acordo com outra coluna
