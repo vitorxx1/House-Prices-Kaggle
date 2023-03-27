@@ -1,3 +1,34 @@
+OBSERVAÇÕES SOBRE AS VARIÁVEIS
+- boa parte dos valores são categóricos, algo pouco comum em problemas de regressão
+- alguns valores, apesar de numéricos, também são categóricos
+- não há variáveis necessariamente contínuas, mas há variáveis numéricas com muitos valores discretos que se aproximam de algo contínuo
+- muitas variáveis descabalancedas e outras com muitos zeros
+- maior parte dos missing na verdade são falsos missing, a casa apenas não possui o item que está sendo avaliado
+
+
+FEATURE SELECTION
+- como o número de variáveis é alto e para algumas técnicas existe necessidade de transformação dos dados, vale a pena usar técnicas
+mais genéricas de começo para filtrar uma boa parte, sem a necessidade de muitas transformações, como permutations e shap values
+
+- Permutation importance: os 10-11 primeiros valores impactam mais, a partir daí a mudança vai abaixando aos poucos
+- SHAP Values: assim como permutation importance, os 10-11 primeiros valores impactam mais
+- Feature importance: mesmo caso de permutation importance e shap
+
+- Escolher as features que aparecem dentro das 10 mais importantes obtidas nos 3 casos
+
+
+OUTLIER DETECTION E TRATAMENTO
+- a maior parte das colunas numéricas selecionadas possui outliers, apesar de repreentarem um baixo percentual do total
+- estratégia: limitar os valores dos outliers para o máximos e mínimos aceitos como não outlier de acordo com a coluna
+
+
+ANÁLISE DE CORRELAÇÃO
+- Numéricas: calcular os coeficientes de correlação de Pearson e Spearman e selecionar as colunas com valores acima de 0.5
+    - num primeiro momento, manter as variáveis com multicolinearidade
+- Ordinais: aplicar correlação de Kendall e Anova
+- Nominais: aplicar Anova com as colunas após aplicar OHE, eliminando as colunas com p-value maior que o alfa de valor crítico (0.05 escolhido)
+
+
 PREENCHIMENTO DE DADOS MISSING
 Alley: os NaN na verdade indicam que não há acesso via beco
     - vale preencher como "NA" e fazer um OHE da coluna (provavelmente vai dar feature importance baixa para coluna com NA)
@@ -15,3 +46,23 @@ MiscFeature: os NaN na verdade indicam que não há recursos extras na casa
     - vale preencher como "NA" e fazer um OHE da coluna (provavelmente vai dar feature importance baixa para coluna com NA)
     
 LotFrontage: substituir pela média global, ou talvez por uma média de acordo com outra coluna
+
+MasVnrType: preencher com None
+
+MasVnrArea: preencher com 0
+
+BsmtQual, BsmtCond, BsmtFinType1, BsmtFinType2: casa não possui porão/subsolo
+    - vale preencher como "NA" e depois aplicar um OrdinalEncoding na coluna
+
+BsmtExposure: sem parede no jardim
+    - vale preencher como "NA" e depois aplicar um OrdinalEncoding na coluna
+
+Electrical: preencher com mais frequente
+
+GarageType: não possui garagem
+    - vale preencher como "NA" e fazer um OHE da coluna (provavelmente vai dar feature importance baixa para coluna com NA)
+    
+GarageYrBlt: todos os nulos são para casas sem garagem: buscar um valor para substituir
+
+GarageFinish, GarageQual, GarageCond: não possui garagem
+    - vale preencher como "NA" e depois aplicar um OrdinalEncoding na coluna
