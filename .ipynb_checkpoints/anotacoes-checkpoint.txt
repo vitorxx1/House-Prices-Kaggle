@@ -29,6 +29,12 @@ ANÁLISE DE CORRELAÇÃO
 - Nominais: aplicar Anova com as colunas após aplicar OHE, eliminando as colunas com p-value maior que o alfa de valor crítico (0.05 escolhido)
 
 
+MODEL SELECTION
+- estratégia: treinar vários tipos de modelos de regressão e escolher aquele que melhor performar, para depois aplicar possível Fine Tuning
+- abordagem: aplicar pré processamento, como rescaling, para garantir que todos os modelos tenham um desempenho base
+- testar os algoritmos utilizando cross validation e RMSE como métrica de avaliação
+
+
 PREENCHIMENTO DE DADOS MISSING
 Alley: os NaN na verdade indicam que não há acesso via beco
     - vale preencher como "NA" e fazer um OHE da coluna (provavelmente vai dar feature importance baixa para coluna com NA)
