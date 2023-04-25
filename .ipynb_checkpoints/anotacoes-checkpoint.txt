@@ -2,7 +2,7 @@ OBSERVAÇÕES SOBRE AS VARIÁVEIS
 - boa parte dos valores são categóricos, algo pouco comum em problemas de regressão
 - alguns valores, apesar de numéricos, também são categóricos
 - não há variáveis necessariamente contínuas, mas há variáveis numéricas com muitos valores discretos que se aproximam de algo contínuo
-- muitas variáveis descabalancedas e outras com muitos zeros
+- muitas variáveis desbalancedas e outras com muitos zeros
 - maior parte dos missing na verdade são falsos missing, a casa apenas não possui o item que está sendo avaliado
 
 
@@ -18,8 +18,8 @@ mais genéricas de começo para filtrar uma boa parte, sem a necessidade de muit
 
 
 OUTLIER DETECTION E TRATAMENTO
-- a maior parte das colunas numéricas selecionadas possui outliers, apesar de repreentarem um baixo percentual do total
-- estratégia: limitar os valores dos outliers para o máximos e mínimos aceitos como não outlier de acordo com a coluna
+- a maior parte das colunas numéricas selecionadas possui outliers, apesar de representarem um baixo percentual do total
+- estratégia: limitar os valores dos outliers para os máximos e mínimos aceitos como não outlier de acordo com a coluna
 
 
 ANÁLISE DE CORRELAÇÃO
@@ -33,6 +33,16 @@ MODEL SELECTION
 - estratégia: treinar vários tipos de modelos de regressão e escolher aquele que melhor performar, para depois aplicar possível Fine Tuning
 - abordagem: aplicar pré processamento, como rescaling, para garantir que todos os modelos tenham um desempenho base
 - testar os algoritmos utilizando cross validation e RMSE como métrica de avaliação
+- modelos com melhores desempenhos: RF e XGBoost
+
+
+FINE TUNING
+- buscar a melhor combinação de parâmetros para os modelos com melhores desenpenhos na etapa de model selection
+- num primeiro momento, utilizar randomized search e depois partir para grid search com algo mais fechado
+
+
+ESCORAGEM
+- gerar os valores para submeter com os modelos do primeiro Fine Tuning
 
 
 PREENCHIMENTO DE DADOS MISSING
